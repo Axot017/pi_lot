@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-09T00:00:00Z",
+  "title": "Design System: PiLot",
+  "extensions": {
+    "colorMeta": {
+      "cockpit-bg": {"role": "neutral", "displayName": "Cockpit Background", "canonical": "oklch(13% 0.018 286)", "tonalRamp": ["oklch(13% 0.018 286)", "oklch(18% 0.018 286)", "oklch(24% 0.018 286)", "oklch(34% 0.018 286)", "oklch(48% 0.016 286)", "oklch(64% 0.014 286)", "oklch(80% 0.012 286)", "oklch(94% 0.008 286)"]},
+      "cockpit-panel": {"role": "neutral", "displayName": "Cockpit Panel", "canonical": "oklch(16% 0.018 286)", "tonalRamp": ["oklch(13% 0.018 286)", "oklch(16% 0.018 286)", "oklch(22% 0.018 286)", "oklch(32% 0.018 286)", "oklch(46% 0.016 286)", "oklch(62% 0.014 286)", "oklch(78% 0.012 286)", "oklch(94% 0.008 286)"]},
+      "cockpit-surface": {"role": "neutral", "displayName": "Cockpit Surface", "canonical": "oklch(18% 0.018 286)", "tonalRamp": ["oklch(13% 0.018 286)", "oklch(18% 0.018 286)", "oklch(24% 0.018 286)", "oklch(34% 0.018 286)", "oklch(48% 0.016 286)", "oklch(64% 0.014 286)", "oklch(80% 0.012 286)", "oklch(94% 0.008 286)"]},
+      "violet-accent": {"role": "primary", "displayName": "Control Violet", "canonical": "oklch(62% 0.22 286)", "tonalRamp": ["oklch(16% 0.08 286)", "oklch(24% 0.12 286)", "oklch(36% 0.16 286)", "oklch(48% 0.20 286)", "oklch(62% 0.22 286)", "oklch(74% 0.18 286)", "oklch(86% 0.10 286)", "oklch(95% 0.04 286)"]},
+      "amber-warning": {"role": "secondary", "displayName": "Safety Amber", "canonical": "oklch(78% 0.12 78)", "tonalRamp": ["oklch(18% 0.05 78)", "oklch(28% 0.07 78)", "oklch(40% 0.09 78)", "oklch(56% 0.11 78)", "oklch(78% 0.12 78)", "oklch(86% 0.08 78)", "oklch(92% 0.05 78)", "oklch(97% 0.02 78)"]},
+      "emerald-safe": {"role": "secondary", "displayName": "Trusted Emerald", "canonical": "oklch(74% 0.14 158)", "tonalRamp": ["oklch(18% 0.05 158)", "oklch(28% 0.07 158)", "oklch(40% 0.09 158)", "oklch(56% 0.11 158)", "oklch(74% 0.14 158)", "oklch(84% 0.09 158)", "oklch(92% 0.05 158)", "oklch(97% 0.02 158)"]}
+    },
+    "typographyMeta": {
+      "headline": {"displayName": "Headline", "purpose": "Current session title and primary screen heading."},
+      "title": {"displayName": "Title", "purpose": "Project names, message authors, and component headings."},
+      "body": {"displayName": "Body", "purpose": "Chat copy and standard UI text."},
+      "label": {"displayName": "Label", "purpose": "Status labels, compact pills, metadata headings."},
+      "code": {"displayName": "Code", "purpose": "Paths, commands, snippets, and tool output."}
+    },
+    "shadows": [
+      {"name": "ambient-transcript", "value": "0 18px 60px oklch(8% 0.02 286 / 0.22)", "purpose": "Message bubbles and contained transcript elements."},
+      {"name": "composer-lift", "value": "0 18px 80px oklch(8% 0.02 286 / 0.28)", "purpose": "Pinned composer above transcript."},
+      {"name": "accent-glow", "value": "0 0 20px oklch(62% 0.22 286 / 0.18), 0 0 44px oklch(62% 0.22 286 / 0.08)", "purpose": "Primary action and logo only."},
+      {"name": "active-micro-glow", "value": "0 0 16px oklch(62% 0.22 286 / 0.12)", "purpose": "Streaming pills and live status dots."}
+    ],
+    "motion": [
+      {"name": "state-transition", "value": "150ms cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Hover and focus feedback."},
+      {"name": "panel-transition", "value": "220ms cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Future sidebar/session reveal changes."}
+    ],
+    "breakpoints": [
+      {"name": "sm", "value": "640px"},
+      {"name": "lg", "value": "1024px"},
+      {"name": "xl", "value": "1280px"}
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action with flat dark surface and external violet glow.",
+      "html": "<button class=\"ds-btn-primary\">Send prompt</button>",
+      "css": ".ds-btn-primary { background: oklch(20% 0.034 286); color: oklch(96% 0.01 286); border: 1px solid oklch(75% 0.19 286 / 0.28); border-radius: 0.75rem; padding: 0.5rem 1rem; font: 600 0.875rem/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; box-shadow: 0 0 20px oklch(62% 0.22 286 / 0.18), 0 0 44px oklch(62% 0.22 286 / 0.08); transition: border-color 150ms cubic-bezier(0.25, 1, 0.5, 1), background 150ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 150ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-btn-primary:hover { background: oklch(22% 0.044 286); border-color: oklch(86% 0.12 286 / 0.5); box-shadow: 0 0 28px oklch(62% 0.22 286 / 0.24), 0 0 56px oklch(62% 0.22 286 / 0.12); } .ds-btn-primary:focus-visible { outline: 2px solid oklch(75% 0.19 286); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet utility action without persistent glow.",
+      "html": "<button class=\"ds-btn-secondary\">Abort</button>",
+      "css": ".ds-btn-secondary { background: transparent; color: oklch(82% 0.015 286); border: 1px solid oklch(32% 0.026 286); border-radius: 0.75rem; padding: 0.5rem 0.75rem; font: 500 0.875rem/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; transition: background 150ms cubic-bezier(0.25, 1, 0.5, 1), border-color 150ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-btn-secondary:hover { background: oklch(23% 0.02 286); } .ds-btn-secondary:focus-visible { outline: 2px solid oklch(75% 0.19 286); outline-offset: 2px; }"
+    },
+    {
+      "name": "Session Row",
+      "kind": "nav",
+      "refersTo": "navigation-session-active",
+      "description": "Active session row in project tree.",
+      "html": "<button class=\"ds-session-row\"><span class=\"ds-session-dot\"></span><span><strong>Web UI foundation</strong><small>Streaming · 6 messages</small></span></button>",
+      "css": ".ds-session-row { width: 100%; display: flex; align-items: center; gap: 0.5rem; text-align: left; background: oklch(20% 0.028 286); color: oklch(96% 0.01 286); border: 0; border-radius: 0.5rem; padding: 0.5rem 0.625rem; box-shadow: inset 0 0 0 1px oklch(70% 0.16 286 / 0.12), 0 0 18px oklch(62% 0.22 286 / 0.10); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; } .ds-session-dot { width: 0.375rem; height: 0.375rem; border-radius: 999px; background: oklch(75% 0.19 286); box-shadow: 0 0 16px oklch(75% 0.19 286); } .ds-session-row strong { display: block; font-size: 0.75rem; font-weight: 500; } .ds-session-row small { display: block; margin-top: 0.125rem; color: oklch(58% 0.017 286); font-size: 0.68rem; } .ds-session-row:focus-visible { outline: 2px solid oklch(75% 0.19 286); outline-offset: 2px; }"
+    },
+    {
+      "name": "Assistant Message",
+      "kind": "card",
+      "refersTo": "message-assistant",
+      "description": "Neutral assistant transcript bubble.",
+      "html": "<article class=\"ds-message\"><p class=\"ds-message-label\">pi</p><p>Reading router and layout conventions before editing.</p></article>",
+      "css": ".ds-message { max-width: 75ch; background: oklch(18% 0.018 286); color: oklch(86% 0.014 286); border: 1px solid oklch(29% 0.025 286); border-radius: 1.25rem; padding: 0.75rem 1rem; box-shadow: 0 18px 60px oklch(8% 0.02 286 / 0.22); font: 400 0.875rem/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; } .ds-message-label { margin: 0 0 0.5rem; color: oklch(65% 0.035 286); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; } .ds-message p { margin: 0; }"
+    },
+    {
+      "name": "Composer Field",
+      "kind": "input",
+      "refersTo": "input-composer",
+      "description": "Pinned chat composer shell.",
+      "html": "<label class=\"ds-composer\"><span>Message pi</span><textarea placeholder=\"Ask pi to inspect, edit, test, or explain this project...\"></textarea></label>",
+      "css": ".ds-composer { display: block; background: oklch(18% 0.018 286); border: 1px solid oklch(31% 0.026 286); border-radius: 1.25rem; box-shadow: 0 18px 80px oklch(8% 0.02 286 / 0.28); overflow: hidden; } .ds-composer span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); } .ds-composer textarea { width: 100%; min-height: 7rem; resize: none; background: transparent; color: oklch(92% 0.012 286); border: 0; padding: 0.75rem 1rem; font: 400 0.875rem/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; } .ds-composer textarea::placeholder { color: oklch(55% 0.018 286); } .ds-composer:focus-within { border-color: oklch(75% 0.19 286 / 0.6); box-shadow: 0 18px 80px oklch(8% 0.02 286 / 0.28), 0 0 0 2px oklch(75% 0.19 286 / 0.20); } .ds-composer textarea:focus { outline: none; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Dim Control Room",
+    "overview": "PiLot should feel like a quiet control surface in a dark room: compact, legible, and precise, with enough light to identify the active system state without turning the product into a neon poster. The current visual language is a dark violet-tinted product UI with one accent family, restrained surfaces, dense spacing, and external glow used only on active or primary affordances.",
+    "keyCharacteristics": [
+      "Dark, violet-tinted neutral shell with no pure black and no pure white.",
+      "Dense, quiet, keyboard-ready controls.",
+      "Tonal layering first; glow only for active or primary accents.",
+      "Full-height app shell where navigation and transcript scroll independently.",
+      "Functional copy, visible state, and no decorative gradients on broad backgrounds."
+    ],
+    "rules": [
+      {"name": "The One Light Rule", "body": "Violet is the only luminous accent. If a second glow hue appears, remove it unless it is a semantic warning or success state.", "section": "colors"},
+      {"name": "The No Sun Rule", "body": "No large radial glows, blobs, hero halos, or atmospheric circles behind the interface. Glow belongs to small controls and active states only.", "section": "colors"},
+      {"name": "The No Broad Gradient Rule", "body": "Page backgrounds, chat backgrounds, and large panels stay flat. Gradients are not the system; controlled external light is.", "section": "colors"},
+      {"name": "The Native Tool Rule", "body": "Use one system sans family for UI. Do not introduce display fonts, decorative type, or marketing-style type contrast into the product shell.", "section": "typography"},
+      {"name": "The Layer Before Light Rule", "body": "Use surface lightness and borders before shadows. Add glow only when it clarifies active state or primary action.", "section": "elevation"}
+    ],
+    "dos": [
+      "Do keep the app as a full-height cockpit with independent sidebar and transcript scrolling.",
+      "Do use OKLCH values for new UI color work.",
+      "Do keep project, session, model, context, and safety state visible where relevant.",
+      "Do use violet glow only for active/primary accents: logo, send button, live session dot, streaming chip.",
+      "Do keep chat input pinned to the bottom of the viewport."
+    ],
+    "donts": [
+      "Don't use generic SaaS dashboards.",
+      "Don't make toy chat UIs.",
+      "Don't add decorative AI gloss.",
+      "Don't use hacker neon or over-stylized terminal cosplay.",
+      "Don't hide safety-critical state.",
+      "Don't use large radial glows, blobs, suns, or atmospheric circles.",
+      "Don't put gradients on page backgrounds, chat windows, or broad panels."
+    ]
+  }
+}
