@@ -14,87 +14,23 @@ defmodule PiLotWeb.HomeLive do
     <Layouts.app flash={@flash}>
       <div class="h-dvh overflow-hidden bg-[oklch(13%_0.018_286)] text-[oklch(92%_0.012_286)] selection:bg-violet-400/30 selection:text-violet-50">
         <div class="relative mx-auto flex h-dvh min-h-0 w-full max-w-[1800px] flex-col overflow-hidden xl:flex-row">
-          <aside class="max-h-64 shrink-0 overflow-y-auto border-b border-[oklch(28%_0.024_286)] bg-[oklch(16%_0.018_286)]/92 backdrop-blur-xl xl:max-h-none xl:min-h-0 xl:w-[22rem] xl:border-b-0 xl:border-r">
-            <div class="flex items-center justify-between gap-3 border-b border-[oklch(28%_0.024_286)] px-4 py-4">
-              <div class="flex items-center gap-3">
-                <div class="grid size-9 place-items-center rounded-xl border border-violet-300/24 bg-[oklch(19%_0.028_286)] text-sm font-black text-violet-50 shadow-[0_0_22px_oklch(62%_0.22_286_/_0.28),0_0_44px_oklch(62%_0.22_286_/_0.12)]">
-                  π
-                </div>
-                <div>
-                  <p class="text-sm font-semibold tracking-tight">PiLot</p>
-                  <p class="text-xs text-[oklch(69%_0.018_286)]">Local agent cockpit</p>
-                </div>
-              </div>
-              <button class="rounded-lg border border-violet-300/18 bg-[oklch(18%_0.022_286)] px-2.5 py-1.5 text-xs font-medium text-[oklch(84%_0.024_286)] shadow-[0_0_18px_oklch(62%_0.22_286_/_0.10)] transition hover:border-violet-400/60 hover:bg-violet-400/10 hover:shadow-[0_0_24px_oklch(62%_0.22_286_/_0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300">
-                New
-              </button>
+          <details class="group shrink-0 border-b border-[oklch(28%_0.024_286)] bg-[oklch(16%_0.018_286)] xl:hidden">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-[oklch(88%_0.014_286)] transition hover:bg-[oklch(20%_0.02_286)] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-300 [&::-webkit-details-marker]:hidden">
+              <span class="flex items-center gap-2">
+                <.icon name="hero-folder" class="size-4 text-violet-200" /> Projects and sessions
+              </span>
+              <.icon
+                name="hero-chevron-down"
+                class="size-4 text-[oklch(62%_0.018_286)] transition group-open:rotate-180"
+              />
+            </summary>
+            <div class="max-h-[42dvh] overflow-y-auto border-t border-[oklch(28%_0.024_286)]">
+              <.sidebar_content projects={@projects} />
             </div>
+          </details>
 
-            <div class="space-y-5 px-3 py-4">
-              <div class="rounded-2xl border border-[oklch(28%_0.024_286)] bg-[oklch(18%_0.018_286)]/80 p-3">
-                <div class="flex items-center justify-between gap-3">
-                  <p class="text-xs font-medium uppercase tracking-[0.14em] text-[oklch(68%_0.035_286)]">
-                    Projects root
-                  </p>
-                  <span class="rounded-full bg-emerald-400/10 px-2 py-0.5 text-[0.68rem] font-medium text-emerald-200">
-                    allowlisted
-                  </span>
-                </div>
-                <p class="mt-2 truncate font-mono text-xs text-[oklch(78%_0.015_286)]">
-                  /home/axot/Projects
-                </p>
-              </div>
-
-              <nav aria-label="Projects and sessions" class="space-y-2">
-                <%= for project <- @projects do %>
-                  <section class="rounded-2xl border border-[oklch(27%_0.022_286)] bg-[oklch(17%_0.016_286)]/72 p-2">
-                    <button class={[
-                      "flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300",
-                      project.active &&
-                        "border border-violet-300/14 bg-[oklch(20%_0.024_286)] text-violet-50",
-                      !project.active && "hover:bg-[oklch(22%_0.018_286)]"
-                    ]}>
-                      <span class="min-w-0">
-                        <span class="block truncate text-sm font-semibold">{project.name}</span>
-                        <span class="mt-0.5 block truncate font-mono text-[0.68rem] text-[oklch(64%_0.017_286)]">
-                          {project.path}
-                        </span>
-                      </span>
-                      <span class="ml-3 rounded-full border border-[oklch(32%_0.03_286)] px-2 py-0.5 text-[0.68rem] text-[oklch(74%_0.02_286)]">
-                        {length(project.sessions)}
-                      </span>
-                    </button>
-
-                    <div class="mt-1 space-y-1 pl-3">
-                      <%= for session <- project.sessions do %>
-                        <button class={[
-                          "group flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300",
-                          session.active &&
-                            "bg-[oklch(20%_0.028_286)] text-[oklch(96%_0.01_286)] shadow-[inset_0_0_0_1px_oklch(70%_0.16_286_/_0.12),0_0_18px_oklch(62%_0.22_286_/_0.10)]",
-                          !session.active &&
-                            "text-[oklch(70%_0.018_286)] hover:bg-[oklch(21%_0.018_286)] hover:text-[oklch(88%_0.014_286)]"
-                        ]}>
-                          <span class={[
-                            "size-1.5 rounded-full shrink-0",
-                            session.status == :running &&
-                              "bg-violet-300 shadow-[0_0_16px_oklch(75%_0.19_286)]",
-                            session.status == :idle && "bg-[oklch(54%_0.02_286)]",
-                            session.status == :error && "bg-rose-300"
-                          ]}>
-                          </span>
-                          <span class="min-w-0 flex-1">
-                            <span class="block truncate font-medium">{session.title}</span>
-                            <span class="block truncate text-[0.68rem] text-[oklch(58%_0.017_286)]">
-                              {session.meta}
-                            </span>
-                          </span>
-                        </button>
-                      <% end %>
-                    </div>
-                  </section>
-                <% end %>
-              </nav>
-            </div>
+          <aside class="hidden shrink-0 overflow-y-auto border-r border-[oklch(28%_0.024_286)] bg-[oklch(16%_0.018_286)]/92 backdrop-blur-xl xl:block xl:min-h-0 xl:w-[22rem]">
+            <.sidebar_content projects={@projects} />
           </aside>
 
           <main id="main-content" class="flex min-h-0 flex-1 flex-col overflow-hidden">
@@ -238,6 +174,93 @@ defmodule PiLotWeb.HomeLive do
         </div>
       </div>
     </Layouts.app>
+    """
+  end
+
+  attr :projects, :list, required: true
+
+  defp sidebar_content(assigns) do
+    ~H"""
+    <div class="flex items-center justify-between gap-3 border-b border-[oklch(28%_0.024_286)] px-4 py-4">
+      <div class="flex items-center gap-3">
+        <div class="grid size-9 place-items-center rounded-xl border border-violet-300/24 bg-[oklch(19%_0.028_286)] text-sm font-black text-violet-50 shadow-[0_0_22px_oklch(62%_0.22_286_/_0.28),0_0_44px_oklch(62%_0.22_286_/_0.12)]">
+          π
+        </div>
+        <div>
+          <p class="text-sm font-semibold tracking-tight">PiLot</p>
+          <p class="text-xs text-[oklch(69%_0.018_286)]">Local agent cockpit</p>
+        </div>
+      </div>
+      <button class="rounded-lg border border-violet-300/18 bg-[oklch(18%_0.022_286)] px-2.5 py-1.5 text-xs font-medium text-[oklch(84%_0.024_286)] shadow-[0_0_18px_oklch(62%_0.22_286_/_0.10)] transition hover:border-violet-400/60 hover:bg-violet-400/10 hover:shadow-[0_0_24px_oklch(62%_0.22_286_/_0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300">
+        New
+      </button>
+    </div>
+
+    <div class="space-y-5 px-3 py-4">
+      <div class="rounded-2xl border border-[oklch(28%_0.024_286)] bg-[oklch(18%_0.018_286)]/80 p-3">
+        <div class="flex items-center justify-between gap-3">
+          <p class="text-xs font-medium uppercase tracking-[0.14em] text-[oklch(68%_0.035_286)]">
+            Projects root
+          </p>
+          <span class="rounded-full bg-emerald-400/10 px-2 py-0.5 text-[0.68rem] font-medium text-emerald-200">
+            allowlisted
+          </span>
+        </div>
+        <p class="mt-2 truncate font-mono text-xs text-[oklch(78%_0.015_286)]">
+          /home/axot/Projects
+        </p>
+      </div>
+
+      <nav aria-label="Projects and sessions" class="space-y-2">
+        <%= for project <- @projects do %>
+          <section class="rounded-2xl border border-[oklch(27%_0.022_286)] bg-[oklch(17%_0.016_286)]/72 p-2">
+            <button class={[
+              "flex w-full items-center justify-between rounded-xl px-2.5 py-2 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300",
+              project.active &&
+                "border border-violet-300/14 bg-[oklch(20%_0.024_286)] text-violet-50",
+              !project.active && "hover:bg-[oklch(22%_0.018_286)]"
+            ]}>
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-semibold">{project.name}</span>
+                <span class="mt-0.5 block truncate font-mono text-[0.68rem] text-[oklch(64%_0.017_286)]">
+                  {project.path}
+                </span>
+              </span>
+              <span class="ml-3 rounded-full border border-[oklch(32%_0.03_286)] px-2 py-0.5 text-[0.68rem] text-[oklch(74%_0.02_286)]">
+                {length(project.sessions)}
+              </span>
+            </button>
+
+            <div class="mt-1 space-y-1 pl-3">
+              <%= for session <- project.sessions do %>
+                <button class={[
+                  "group flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300",
+                  session.active &&
+                    "bg-[oklch(20%_0.028_286)] text-[oklch(96%_0.01_286)] shadow-[inset_0_0_0_1px_oklch(70%_0.16_286_/_0.12),0_0_18px_oklch(62%_0.22_286_/_0.10)]",
+                  !session.active &&
+                    "text-[oklch(70%_0.018_286)] hover:bg-[oklch(21%_0.018_286)] hover:text-[oklch(88%_0.014_286)]"
+                ]}>
+                  <span class={[
+                    "size-1.5 rounded-full shrink-0",
+                    session.status == :running &&
+                      "bg-violet-300 shadow-[0_0_16px_oklch(75%_0.19_286)]",
+                    session.status == :idle && "bg-[oklch(54%_0.02_286)]",
+                    session.status == :error && "bg-rose-300"
+                  ]}>
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block truncate font-medium">{session.title}</span>
+                    <span class="block truncate text-[0.68rem] text-[oklch(58%_0.017_286)]">
+                      {session.meta}
+                    </span>
+                  </span>
+                </button>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
+      </nav>
+    </div>
     """
   end
 
