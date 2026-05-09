@@ -14,7 +14,7 @@ defmodule PiLotWeb.HomeLive do
     <Layouts.app flash={@flash}>
       <div class="h-dvh overflow-hidden bg-[oklch(13%_0.018_286)] text-[oklch(92%_0.012_286)] selection:bg-violet-400/30 selection:text-violet-50">
         <div class="relative mx-auto flex h-dvh min-h-0 w-full max-w-[1800px] flex-col overflow-hidden xl:flex-row">
-          <details class="group shrink-0 border-b border-[oklch(28%_0.024_286)] bg-[oklch(16%_0.018_286)] xl:hidden">
+          <details class="group shrink-0 border-b border-[oklch(28%_0.024_286)] bg-[oklch(16%_0.018_286)] open:fixed open:inset-0 open:z-50 open:flex open:h-dvh open:flex-col open:border-b-0 xl:hidden">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-[oklch(88%_0.014_286)] transition hover:bg-[oklch(20%_0.02_286)] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-violet-300 [&::-webkit-details-marker]:hidden">
               <span class="flex items-center gap-2">
                 <.icon name="hero-folder" class="size-4 text-violet-200" /> Projects and sessions
@@ -24,7 +24,7 @@ defmodule PiLotWeb.HomeLive do
                 class="size-4 text-[oklch(62%_0.018_286)] transition group-open:rotate-180"
               />
             </summary>
-            <div class="max-h-[42dvh] overflow-y-auto border-t border-[oklch(28%_0.024_286)]">
+            <div class="hidden min-h-0 flex-1 overflow-y-auto border-t border-[oklch(28%_0.024_286)] group-open:block">
               <.sidebar_content projects={@projects} />
             </div>
           </details>
