@@ -14,8 +14,8 @@ defmodule PiLot.Application do
        repos: Application.fetch_env!(:pi_lot, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:pi_lot, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: PiLot.PubSub},
-      # Start a worker by calling: PiLot.Worker.start_link(arg)
-      # {PiLot.Worker, arg},
+      {Registry, keys: :unique, name: PiLot.PiSessionRegistry},
+      PiLot.PiSupervisor,
       # Start to serve requests, typically the last entry
       PiLotWeb.Endpoint
     ]

@@ -20,6 +20,11 @@ if System.get_env("PHX_SERVER") do
   config :pi_lot, PiLotWeb.Endpoint, server: true
 end
 
+config :pi_lot,
+  projects_dir: System.get_env("PI_WEBUI_PROJECTS_DIR", Path.expand("~/Projects")),
+  session_dir: System.get_env("PI_WEBUI_SESSION_DIR", Path.expand("~/.pi/agent/sessions")),
+  pi_path: System.get_env("PI_WEBUI_PI_PATH", "pi")
+
 config :pi_lot, PiLotWeb.Endpoint, http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
 if config_env() == :prod do
