@@ -6,7 +6,7 @@ defmodule PiLotWeb.PageControllerTest do
     response = html_response(conn, 200)
 
     assert response =~ "PiLot"
-    assert response =~ "Add project session workspace"
+    assert response =~ "Local agent cockpit"
     assert response =~ "Send prompt"
   end
 end
